@@ -15,6 +15,7 @@ class Venue {
     private var _address: String!
     private var _latitude: Float!
     private var _longitude: Float!
+    private var _votes: Int!
     
     var id: String? {
         return _id
@@ -36,12 +37,22 @@ class Venue {
         return _longitude
     }
     
+    var votes: Int? {
+        return _votes
+    }
+    
     init(id: String, name: String, address: String, latitude: Float, longitude: Float) {
         self._id = id
         self._name = name
         self._address = address
         self._latitude = latitude
         self._longitude = longitude
+    }
+    
+    init(id: String, name: String, votes: Int) {
+        self._id = id
+        self._name = name
+        self._votes = votes
     }
     
     init(id: String, dictionary: Dictionary<String, AnyObject>) {
@@ -61,6 +72,10 @@ class Venue {
         
         if let longitude = dictionary["longitude"] as? Float {
             _longitude = longitude
+        }
+        
+        if let votes = dictionary["votes"] as? Int {
+            _votes = votes
         }
     }
     

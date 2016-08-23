@@ -16,7 +16,6 @@
 		C07C9C671D69CAAF00B2C7C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C9C661D69CAAF00B2C7C8 /* Constants.swift */; };
 		C098CEA81D694F4800938D91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CEA71D694F4800938D91 /* AppDelegate.swift */; };
 		C098CEAA1D694F4800938D91 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CEA91D694F4800938D91 /* MapViewController.swift */; };
-		C098CEAC1D694F4800938D91 /* WinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CEAB1D694F4800938D91 /* WinnersViewController.swift */; };
 		C098CEAF1D694F4800938D91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C098CEAD1D694F4800938D91 /* Main.storyboard */; };
 		C098CEB11D694F4800938D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C098CEB01D694F4800938D91 /* Assets.xcassets */; };
 		C098CEB41D694F4800938D91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C098CEB21D694F4800938D91 /* LaunchScreen.storyboard */; };
@@ -30,6 +29,7 @@
 		C0C51DA41D6AED2600CC72DD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C51DA31D6AED2600CC72DD /* CFNetwork.framework */; };
 		C0C51DA61D6AED3000CC72DD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C51DA51D6AED3000CC72DD /* Security.framework */; };
 		C0C51DA81D6AED3900CC72DD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C51DA71D6AED3900CC72DD /* SystemConfiguration.framework */; };
+		C0C51DAA1D6BF2F100CC72DD /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C51DA91D6BF2F100CC72DD /* Vote.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +63,6 @@
 		C098CEA41D694F4800938D91 /* Hungry Team.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hungry Team.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C098CEA71D694F4800938D91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C098CEA91D694F4800938D91 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		C098CEAB1D694F4800938D91 /* WinnersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnersViewController.swift; sourceTree = "<group>"; };
 		C098CEAE1D694F4800938D91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C098CEB01D694F4800938D91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C098CEB31D694F4800938D91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -82,6 +81,7 @@
 		C0C51DA31D6AED2600CC72DD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		C0C51DA51D6AED3000CC72DD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C0C51DA71D6AED3900CC72DD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C0C51DA91D6BF2F100CC72DD /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		C62A4A8533C2FA7A6CA4753E /* Pods_HungryTeamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryTeamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCC1F070005D3AE126E4FAE6 /* Pods-HungryTeamTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryTeamTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HungryTeamTests/Pods-HungryTeamTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F8AB8A1777524378008E9D36 /* Pods-HungryTeam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryTeam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HungryTeam/Pods-HungryTeam.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				C07C9C661D69CAAF00B2C7C8 /* Constants.swift */,
-				C06D4A391D6AA29400D632CC /* VenueAnnotation.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -213,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				C098CEA91D694F4800938D91 /* MapViewController.swift */,
-				C098CEAB1D694F4800938D91 /* WinnersViewController.swift */,
 				C098CED71D6953DF00938D91 /* PollViewController.swift */,
 			);
 			name = Controller;
@@ -223,6 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				C098CF181D69B94000938D91 /* Venue.swift */,
+				C06D4A391D6AA29400D632CC /* VenueAnnotation.swift */,
+				C0C51DA91D6BF2F100CC72DD /* Vote.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -548,13 +548,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05754431D6AE4E8003D2F37 /* DataService.swift in Sources */,
-				C098CEAC1D694F4800938D91 /* WinnersViewController.swift in Sources */,
 				C098CF191D69B94000938D91 /* Venue.swift in Sources */,
 				C098CF1C1D69C04900938D91 /* VenueAPI.swift in Sources */,
 				C098CEA81D694F4800938D91 /* AppDelegate.swift in Sources */,
 				C07C9C671D69CAAF00B2C7C8 /* Constants.swift in Sources */,
 				C098CED81D6953DF00938D91 /* PollViewController.swift in Sources */,
 				C06D4A3A1D6AA29400D632CC /* VenueAnnotation.swift in Sources */,
+				C0C51DAA1D6BF2F100CC72DD /* Vote.swift in Sources */,
 				C098CEAA1D694F4800938D91 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
