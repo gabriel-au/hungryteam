@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C098CEA31D694F4800938D91"
-               BuildableName = "HungryTeam.app"
+               BuildableName = "Hungry Team.app"
                BlueprintName = "HungryTeam"
                ReferencedContainer = "container:HungryTeam.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C098CEA31D694F4800938D91"
-            BuildableName = "HungryTeam.app"
+            BuildableName = "Hungry Team.app"
             BlueprintName = "HungryTeam"
             ReferencedContainer = "container:HungryTeam.xcodeproj">
          </BuildableReference>
@@ -76,11 +76,17 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C098CEA31D694F4800938D91"
-            BuildableName = "HungryTeam.app"
+            BuildableName = "Hungry Team.app"
             BlueprintName = "HungryTeam"
             ReferencedContainer = "container:HungryTeam.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-FIRAnalyticsDebugEnabled"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -95,7 +101,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C098CEA31D694F4800938D91"
-            BuildableName = "HungryTeam.app"
+            BuildableName = "Hungry Team.app"
             BlueprintName = "HungryTeam"
             ReferencedContainer = "container:HungryTeam.xcodeproj">
          </BuildableReference>

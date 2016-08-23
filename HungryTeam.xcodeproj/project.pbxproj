@@ -7,14 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18171A1F3D8BEA922F01B6C1 /* Pods_HungryTeamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62A4A8533C2FA7A6CA4753E /* Pods_HungryTeamUITests.framework */; };
+		3867A5BE2BB68B21B1F87666 /* Pods_HungryTeam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 518BE3DF8D344E7D44481FB6 /* Pods_HungryTeam.framework */; };
+		49C87D53B3207BABFC1229AF /* Pods_HungryTeamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB026CE6E892AAFF7367AEF /* Pods_HungryTeamTests.framework */; };
+		C03732A51D6AC2C100FFBF6C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C03732A41D6AC2C100FFBF6C /* GoogleService-Info.plist */; };
+		C05754431D6AE4E8003D2F37 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05754421D6AE4E8003D2F37 /* DataService.swift */; };
+		C06D4A3A1D6AA29400D632CC /* VenueAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D4A391D6AA29400D632CC /* VenueAnnotation.swift */; };
+		C07C9C671D69CAAF00B2C7C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C9C661D69CAAF00B2C7C8 /* Constants.swift */; };
 		C098CEA81D694F4800938D91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CEA71D694F4800938D91 /* AppDelegate.swift */; };
-		C098CEAA1D694F4800938D91 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CEA91D694F4800938D91 /* FirstViewController.swift */; };
-		C098CEAC1D694F4800938D91 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CEAB1D694F4800938D91 /* SecondViewController.swift */; };
+		C098CEAA1D694F4800938D91 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CEA91D694F4800938D91 /* MapViewController.swift */; };
+		C098CEAC1D694F4800938D91 /* WinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CEAB1D694F4800938D91 /* WinnersViewController.swift */; };
 		C098CEAF1D694F4800938D91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C098CEAD1D694F4800938D91 /* Main.storyboard */; };
 		C098CEB11D694F4800938D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C098CEB01D694F4800938D91 /* Assets.xcassets */; };
 		C098CEB41D694F4800938D91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C098CEB21D694F4800938D91 /* LaunchScreen.storyboard */; };
 		C098CEBF1D694F4800938D91 /* HungryTeamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CEBE1D694F4800938D91 /* HungryTeamTests.swift */; };
 		C098CECA1D694F4800938D91 /* HungryTeamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CEC91D694F4800938D91 /* HungryTeamUITests.swift */; };
+		C098CED81D6953DF00938D91 /* PollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CED71D6953DF00938D91 /* PollViewController.swift */; };
+		C098CF191D69B94000938D91 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CF181D69B94000938D91 /* Venue.swift */; };
+		C098CF1C1D69C04900938D91 /* VenueAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098CF1B1D69C04900938D91 /* VenueAPI.swift */; };
+		C0C51DA01D6AED0F00CC72DD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C51D9F1D6AED0F00CC72DD /* libicucore.tbd */; };
+		C0C51DA21D6AED1C00CC72DD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C51DA11D6AED1C00CC72DD /* libc++.tbd */; };
+		C0C51DA41D6AED2600CC72DD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C51DA31D6AED2600CC72DD /* CFNetwork.framework */; };
+		C0C51DA61D6AED3000CC72DD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C51DA51D6AED3000CC72DD /* Security.framework */; };
+		C0C51DA81D6AED3900CC72DD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C51DA71D6AED3900CC72DD /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +50,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C098CEA41D694F4800938D91 /* HungryTeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HungryTeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5056E27393E32820AABEDA57 /* Pods-HungryTeamUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryTeamUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HungryTeamUITests/Pods-HungryTeamUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		518BE3DF8D344E7D44481FB6 /* Pods_HungryTeam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryTeam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FB026CE6E892AAFF7367AEF /* Pods_HungryTeamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryTeamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77D8BC39717F34D23B25BBEC /* Pods-HungryTeamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryTeamUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HungryTeamUITests/Pods-HungryTeamUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7CD1730B9E7F2E580E93F27F /* Pods-HungryTeamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryTeamTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HungryTeamTests/Pods-HungryTeamTests.release.xcconfig"; sourceTree = "<group>"; };
+		9FACF33A5F9326062E53FDB8 /* Pods-HungryTeam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryTeam.release.xcconfig"; path = "Pods/Target Support Files/Pods-HungryTeam/Pods-HungryTeam.release.xcconfig"; sourceTree = "<group>"; };
+		C03732A41D6AC2C100FFBF6C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C05754421D6AE4E8003D2F37 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		C06D4A391D6AA29400D632CC /* VenueAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueAnnotation.swift; sourceTree = "<group>"; };
+		C07C9C661D69CAAF00B2C7C8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C098CEA41D694F4800938D91 /* Hungry Team.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hungry Team.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C098CEA71D694F4800938D91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C098CEA91D694F4800938D91 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		C098CEAB1D694F4800938D91 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		C098CEA91D694F4800938D91 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C098CEAB1D694F4800938D91 /* WinnersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnersViewController.swift; sourceTree = "<group>"; };
 		C098CEAE1D694F4800938D91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C098CEB01D694F4800938D91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C098CEB31D694F4800938D91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +74,17 @@
 		C098CEC51D694F4800938D91 /* HungryTeamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HungryTeamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C098CEC91D694F4800938D91 /* HungryTeamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HungryTeamUITests.swift; sourceTree = "<group>"; };
 		C098CECB1D694F4800938D91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C098CED71D6953DF00938D91 /* PollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollViewController.swift; sourceTree = "<group>"; };
+		C098CF181D69B94000938D91 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
+		C098CF1B1D69C04900938D91 /* VenueAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueAPI.swift; sourceTree = "<group>"; };
+		C0C51D9F1D6AED0F00CC72DD /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		C0C51DA11D6AED1C00CC72DD /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		C0C51DA31D6AED2600CC72DD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C0C51DA51D6AED3000CC72DD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C0C51DA71D6AED3900CC72DD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C62A4A8533C2FA7A6CA4753E /* Pods_HungryTeamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HungryTeamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCC1F070005D3AE126E4FAE6 /* Pods-HungryTeamTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryTeamTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HungryTeamTests/Pods-HungryTeamTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F8AB8A1777524378008E9D36 /* Pods-HungryTeam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HungryTeam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HungryTeam/Pods-HungryTeam.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +92,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0C51DA81D6AED3900CC72DD /* SystemConfiguration.framework in Frameworks */,
+				C0C51DA61D6AED3000CC72DD /* Security.framework in Frameworks */,
+				C0C51DA41D6AED2600CC72DD /* CFNetwork.framework in Frameworks */,
+				C0C51DA21D6AED1C00CC72DD /* libc++.tbd in Frameworks */,
+				C0C51DA01D6AED0F00CC72DD /* libicucore.tbd in Frameworks */,
+				3867A5BE2BB68B21B1F87666 /* Pods_HungryTeam.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C87D53B3207BABFC1229AF /* Pods_HungryTeamTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +113,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18171A1F3D8BEA922F01B6C1 /* Pods_HungryTeamUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C05754411D6AE4C7003D2F37 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C05754421D6AE4E8003D2F37 /* DataService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		C06D4A3B1D6AA2F000D632CC /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C07C9C661D69CAAF00B2C7C8 /* Constants.swift */,
+				C06D4A391D6AA29400D632CC /* VenueAnnotation.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		C06D4A3C1D6AA30700D632CC /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C098CEA71D694F4800938D91 /* AppDelegate.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		C07C9C771D69D48C00B2C7C8 /* Third-Party */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Third-Party";
+			sourceTree = "<group>";
+		};
 		C098CE9B1D694F4700938D91 = {
 			isa = PBXGroup;
 			children = (
@@ -83,13 +159,15 @@
 				C098CEBD1D694F4800938D91 /* HungryTeamTests */,
 				C098CEC81D694F4800938D91 /* HungryTeamUITests */,
 				C098CEA51D694F4800938D91 /* Products */,
+				CFA9C933F7E6D3F67DDA1730 /* Pods */,
+				C33B4D8F437F82F7B94CE84C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		C098CEA51D694F4800938D91 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C098CEA41D694F4800938D91 /* HungryTeam.app */,
+				C098CEA41D694F4800938D91 /* Hungry Team.app */,
 				C098CEBA1D694F4800938D91 /* HungryTeamTests.xctest */,
 				C098CEC51D694F4800938D91 /* HungryTeamUITests.xctest */,
 			);
@@ -99,13 +177,16 @@
 		C098CEA61D694F4800938D91 /* HungryTeam */ = {
 			isa = PBXGroup;
 			children = (
-				C098CEA71D694F4800938D91 /* AppDelegate.swift */,
-				C098CEA91D694F4800938D91 /* FirstViewController.swift */,
-				C098CEAB1D694F4800938D91 /* SecondViewController.swift */,
-				C098CEAD1D694F4800938D91 /* Main.storyboard */,
+				C05754411D6AE4C7003D2F37 /* Services */,
+				C098CF1A1D69C01F00938D91 /* API */,
+				C098CF161D69B86100938D91 /* Model */,
+				C098CF171D69B86800938D91 /* View */,
+				C098CF151D69B85300938D91 /* Controller */,
+				C06D4A3C1D6AA30700D632CC /* Main */,
+				C06D4A3B1D6AA2F000D632CC /* Util */,
+				C07C9C771D69D48C00B2C7C8 /* Third-Party */,
+				C09FEA421D69DABD0053E803 /* Supporting Files */,
 				C098CEB01D694F4800938D91 /* Assets.xcassets */,
-				C098CEB21D694F4800938D91 /* LaunchScreen.storyboard */,
-				C098CEB51D694F4800938D91 /* Info.plist */,
 			);
 			path = HungryTeam;
 			sourceTree = "<group>";
@@ -128,6 +209,78 @@
 			path = HungryTeamUITests;
 			sourceTree = "<group>";
 		};
+		C098CF151D69B85300938D91 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C098CEA91D694F4800938D91 /* MapViewController.swift */,
+				C098CEAB1D694F4800938D91 /* WinnersViewController.swift */,
+				C098CED71D6953DF00938D91 /* PollViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		C098CF161D69B86100938D91 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C098CF181D69B94000938D91 /* Venue.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C098CF171D69B86800938D91 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C098CEAD1D694F4800938D91 /* Main.storyboard */,
+				C098CEB21D694F4800938D91 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C098CF1A1D69C01F00938D91 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C098CF1B1D69C04900938D91 /* VenueAPI.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		C09FEA421D69DABD0053E803 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C098CEB51D694F4800938D91 /* Info.plist */,
+				C03732A41D6AC2C100FFBF6C /* GoogleService-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C33B4D8F437F82F7B94CE84C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0C51DA71D6AED3900CC72DD /* SystemConfiguration.framework */,
+				C0C51DA51D6AED3000CC72DD /* Security.framework */,
+				C0C51DA31D6AED2600CC72DD /* CFNetwork.framework */,
+				C0C51DA11D6AED1C00CC72DD /* libc++.tbd */,
+				C0C51D9F1D6AED0F00CC72DD /* libicucore.tbd */,
+				518BE3DF8D344E7D44481FB6 /* Pods_HungryTeam.framework */,
+				6FB026CE6E892AAFF7367AEF /* Pods_HungryTeamTests.framework */,
+				C62A4A8533C2FA7A6CA4753E /* Pods_HungryTeamUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CFA9C933F7E6D3F67DDA1730 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F8AB8A1777524378008E9D36 /* Pods-HungryTeam.debug.xcconfig */,
+				9FACF33A5F9326062E53FDB8 /* Pods-HungryTeam.release.xcconfig */,
+				CCC1F070005D3AE126E4FAE6 /* Pods-HungryTeamTests.debug.xcconfig */,
+				7CD1730B9E7F2E580E93F27F /* Pods-HungryTeamTests.release.xcconfig */,
+				5056E27393E32820AABEDA57 /* Pods-HungryTeamUITests.debug.xcconfig */,
+				77D8BC39717F34D23B25BBEC /* Pods-HungryTeamUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +288,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C098CECE1D694F4800938D91 /* Build configuration list for PBXNativeTarget "HungryTeam" */;
 			buildPhases = (
+				32D9E17B502A3A3743EBCCC1 /* [CP] Check Pods Manifest.lock */,
 				C098CEA01D694F4800938D91 /* Sources */,
 				C098CEA11D694F4800938D91 /* Frameworks */,
 				C098CEA21D694F4800938D91 /* Resources */,
+				4ED3A11AB1AA276C89868F03 /* [CP] Embed Pods Frameworks */,
+				4385E89355B8DDD56B2FB902 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -145,16 +301,19 @@
 			);
 			name = HungryTeam;
 			productName = HungryTeam;
-			productReference = C098CEA41D694F4800938D91 /* HungryTeam.app */;
+			productReference = C098CEA41D694F4800938D91 /* Hungry Team.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C098CEB91D694F4800938D91 /* HungryTeamTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C098CED11D694F4800938D91 /* Build configuration list for PBXNativeTarget "HungryTeamTests" */;
 			buildPhases = (
+				26838E945F0E481E6BCDAD66 /* [CP] Check Pods Manifest.lock */,
 				C098CEB61D694F4800938D91 /* Sources */,
 				C098CEB71D694F4800938D91 /* Frameworks */,
 				C098CEB81D694F4800938D91 /* Resources */,
+				9A90E436806196456268D6DA /* [CP] Embed Pods Frameworks */,
+				83851F82F13E6E7B9194EC2F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +329,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C098CED41D694F4800938D91 /* Build configuration list for PBXNativeTarget "HungryTeamUITests" */;
 			buildPhases = (
+				58F1EB2F83201F09EEB04523 /* [CP] Check Pods Manifest.lock */,
 				C098CEC11D694F4800938D91 /* Sources */,
 				C098CEC21D694F4800938D91 /* Frameworks */,
 				C098CEC31D694F4800938D91 /* Resources */,
+				8F26A1C58079FC68816AEFFA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -236,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C098CEB41D694F4800938D91 /* LaunchScreen.storyboard in Resources */,
+				C03732A51D6AC2C100FFBF6C /* GoogleService-Info.plist in Resources */,
 				C098CEB11D694F4800938D91 /* Assets.xcassets in Resources */,
 				C098CEAF1D694F4800938D91 /* Main.storyboard in Resources */,
 			);
@@ -257,14 +419,143 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		26838E945F0E481E6BCDAD66 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		32D9E17B502A3A3743EBCCC1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4385E89355B8DDD56B2FB902 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HungryTeam/Pods-HungryTeam-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4ED3A11AB1AA276C89868F03 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HungryTeam/Pods-HungryTeam-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58F1EB2F83201F09EEB04523 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		83851F82F13E6E7B9194EC2F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HungryTeamTests/Pods-HungryTeamTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F26A1C58079FC68816AEFFA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HungryTeamUITests/Pods-HungryTeamUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A90E436806196456268D6DA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HungryTeamTests/Pods-HungryTeamTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C098CEA01D694F4800938D91 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C098CEAC1D694F4800938D91 /* SecondViewController.swift in Sources */,
+				C05754431D6AE4E8003D2F37 /* DataService.swift in Sources */,
+				C098CEAC1D694F4800938D91 /* WinnersViewController.swift in Sources */,
+				C098CF191D69B94000938D91 /* Venue.swift in Sources */,
+				C098CF1C1D69C04900938D91 /* VenueAPI.swift in Sources */,
 				C098CEA81D694F4800938D91 /* AppDelegate.swift in Sources */,
-				C098CEAA1D694F4800938D91 /* FirstViewController.swift in Sources */,
+				C07C9C671D69CAAF00B2C7C8 /* Constants.swift in Sources */,
+				C098CED81D6953DF00938D91 /* PollViewController.swift in Sources */,
+				C06D4A3A1D6AA29400D632CC /* VenueAnnotation.swift in Sources */,
+				C098CEAA1D694F4800938D91 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,28 +695,41 @@
 		};
 		C098CECF1D694F4800938D91 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8AB8A1777524378008E9D36 /* Pods-HungryTeam.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = HungryTeam/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.com.primeitservices.HungryTeam;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Hungry Team";
 			};
 			name = Debug;
 		};
 		C098CED01D694F4800938D91 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FACF33A5F9326062E53FDB8 /* Pods-HungryTeam.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = HungryTeam/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.com.primeitservices.HungryTeam;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Hungry Team";
 			};
 			name = Release;
 		};
 		C098CED21D694F4800938D91 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCC1F070005D3AE126E4FAE6 /* Pods-HungryTeamTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = HungryTeamTests/Info.plist;
@@ -438,6 +742,7 @@
 		};
 		C098CED31D694F4800938D91 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CD1730B9E7F2E580E93F27F /* Pods-HungryTeamTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = HungryTeamTests/Info.plist;
@@ -450,6 +755,7 @@
 		};
 		C098CED51D694F4800938D91 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5056E27393E32820AABEDA57 /* Pods-HungryTeamUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = HungryTeamUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -461,6 +767,7 @@
 		};
 		C098CED61D694F4800938D91 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77D8BC39717F34D23B25BBEC /* Pods-HungryTeamUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = HungryTeamUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -489,6 +796,7 @@
 				C098CED01D694F4800938D91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C098CED11D694F4800938D91 /* Build configuration list for PBXNativeTarget "HungryTeamTests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +805,7 @@
 				C098CED31D694F4800938D91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C098CED41D694F4800938D91 /* Build configuration list for PBXNativeTarget "HungryTeamUITests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +814,7 @@
 				C098CED61D694F4800938D91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
