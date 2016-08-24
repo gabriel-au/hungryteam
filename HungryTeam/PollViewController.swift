@@ -82,13 +82,10 @@ class PollViewController: UIViewController, UITableViewDataSource, UITableViewDe
             venueName = venues[0].name!
         }
         
-        print("WINNER >> \(venueName)")
-        
         self.dateFormatter.dateFormat = "dd/MM/yyyy"
         
         cell!.textLabel?.text = venueName
         cell!.detailTextLabel?.text = dateFormatter.stringFromDate(vote.date!)
-//        cell!.detailTextLabel?.text = venue.address
         
         return cell!
     }
@@ -102,9 +99,6 @@ class PollViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // Listen for new messages in the Firebase database
         _refHandle = self.ref.child("votes").observeEventType(.Value, withBlock: { (snapshot) -> Void in
-            //            self.venues.append(snapshot)
-            
-            //            print("KEY >>> \(snapshot.value)!")
             
             self.todaysVote = []
             self.lastVotes = []
@@ -112,19 +106,12 @@ class PollViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
                 for snap in snapshots {
-//                    print("SNAP: \(snap)")
                     
                     if snap.hasChildren() {
                         self.venues = []
-//                        let snapChildrens = snap.children.allObjects
                         
                         for child in snap.children {
-//                            print("SNAP.children: \(child)")
-                            
-//                            print("DATE >> \(snap.key)")
-//                            print("KEY >> \(child.key!)")
-//                            print("NAME >> \(child.value["name"])")
-//                            print("VOTES >> \(child.value["votes"])")
+
                             
                             let venue = Venue(id: child.key, name: (child.value["name"] as? String)!, votes: (child.value["votes"] as? Int)!)
                             
@@ -145,10 +132,6 @@ class PollViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         
                         self.lastVotes.append(vote)
                     }
-                    
-//                    print(">>>> NEW KEY >>> \(snap.key)")
-//                    print(">>>> NEW DATE >>> \(voteDate)")
-                    
                 }
                 
                 self.lastVotes = self.lastVotes.sort({ $0.date!.compare($1.date!) == NSComparisonResult.OrderedDescending })
@@ -186,21 +169,5 @@ class PollViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.thirdVenueVotesLbl.text = todayVenues[2].votes?.description
         }
     }
-    
-//    func forDevTests() {
-        //        strArrayTest = ["Nome 1", "Nome 2"]
-        
-//        venues.append(Venue.init(id: "4d3fafb5cb84b60c02947f22", name: "Tartine", latitude: -33.920053, longitude: 151.189177, address: "635 Gardeners Rd, Mascot NSW 2020"))
-//        
-//        venues.append(Venue.init(id: "4b5d8f9ff964a5208c6129e3", name: "Tavolino Pizzeria", latitude: -33.922332, longitude: 151.187632, address: "7/1-5 Bourke St, Mascot NSW 2020"))
-//        
-//        venues.append(Venue.init(id: "4bf58dd8d48988d1a1941735", name: "Spice Thai Cuisine Mascot", latitude: -33.923418, longitude: 151.186881, address: "3/8 Bourke St, Mascot NSW 2020"))
-//        
-//        venues.append(Venue.init(id: "4d3fafb5cb84b60c02947fab", name: "Ichiro's Sushi Bar", latitude: -33.922563, longitude: 151.186108, address: "14/19-33 Kent Rd, Mascot NSW 2020"))
-        
-        // Tavolino Pizzeria -33.922332, 151.187632 7/1-5 Bourke St, Mascot NSW 2020
-        // Spice Thai Cuisine Mascot -33.923418, 151.186881 3/8 Bourke St, Mascot NSW 2020
-        // Ichiro's Sushi Bar -33.922563, 151.186108 14/19-33 Kent Rd, Mascot NSW 2020
-//    }
 
 }

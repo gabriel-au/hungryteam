@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import Firebase
 import FirebaseInstanceID
-//import FirebaseMessaging
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,38 +18,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var tabBarController: UITabBarController?
     
-//    var locationManager: CLLocationManager?
+    var locationManager: CLLocationManager?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
         UITabBar.appearance().tintColor = UIColor.whiteColor()
         
-//        FIRApp.configure()
+        FIRApp.configure()
         
         let device_id = UIDevice.currentDevice().identifierForVendor?.UUIDString
         NSUserDefaults.standardUserDefaults().setValue(device_id, forKey: "uid")
         
 //        print("PHONE ID >>> \(device_id!)")
         
-//        locationManager = CLLocationManager()
-//        locationManager?.requestWhenInUseAuthorization()
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
         
         // Register for remote notifications
-        if #available(iOS 8.0, *) {
+//        if #available(iOS 8.0, *) {
             // [START register_for_notifications]
             let settings: UIUserNotificationSettings =
                 UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
             // [END register_for_notifications]
-        } else {
-            // Fallback
-            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-            application.registerForRemoteNotificationTypes(types)
-        }
-        
-        FIRApp.configure()
+//        } else {
+//            // Fallback
+//            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
+//            application.registerForRemoteNotificationTypes(types)
+//        }
         
         // Add observer for InstanceID token refresh callback.
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification),
@@ -69,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Print full message.
         print("%@", userInfo)
+        
+        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
     }
 
 
@@ -80,6 +80,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        FIRMessaging.messaging().disconnect()
+        print("Disconnected from FCM.")
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -88,6 +91,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        connectToFcm()
         
 //        if tabBarController == nil {
 //            tabBarController = self.window?.rootViewController as? UITabBarController
@@ -105,28 +110,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("InstanceID token: \(refreshedToken)")
         
         // Connect to FCM since connection may have failed when attempted before having a token.
-//        connectToFcm()
+        connectToFcm()
     }
     
-//    func connectToFcm() {
-//        FIRMessaging.messaging().connectWithCompletion { (error) in
-//            if (error != nil) {
-//                print("Unable to connect with FCM. \(error)")
-//            } else {
-//                print("Connected to FCM.")
-//            }
-//        }
-//    }
-//    
-//    func applicationDidBecomeActive(application: UIApplication) {
-//        connectToFcm()
-//    }
-//    
-//    func applicationDidEnterBackground(application: UIApplication) {
-//        FIRMessaging.messaging().disconnect()
-//        print("Disconnected from FCM.")
-//    }
-
-
+    func application(application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Sandbox)
+    }
+    
+    func connectToFcm() {
+        FIRMessaging.messaging().connectWithCompletion { (error) in
+            if (error != nil) {
+                print("Unable to connect with FCM. \(error)")
+            } else {
+                print("Connected to FCM.")
+            }
+        }
+    }
 }
 

@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 import CoreLocation
 import Firebase
+import FirebaseInstanceID
+import FirebaseMessaging
 
 class MapViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -101,8 +103,6 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             let voteAlert = UIAlertController(title: "VOTE", message: "You can vote once a day. \nVoting closes at 1pm. \nDo you confirm your vote?", preferredStyle: UIAlertControllerStyle.Alert)
             
             voteAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-//                print("Handle Ok logic here")
-                
                 self.vote(self.venueSelected)
                 self.tabBarController!.selectedIndex = 1
             }))
@@ -130,10 +130,6 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("locationsCell")
         
-//        let venuesSnapshot: FIRDataSnapshot! = self.venues[indexPath.row]
-//        let venue = venuesSnapshot.value as! Dictionary<String, String>
-//        let name = venue[Constants.VenueFields.name] as String!
-        
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "locationsCell")
         }
@@ -152,7 +148,6 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         mapView?.setRegion(region, animated: true)
         mapView?.selectAnnotation(venueAnnotations[indexPath.row], animated: true)
-//        mapView?.selectAnnotation(mapView.annotations[indexPath.row], animated: true)
         
         if votedToday {
             self.voteBtn.setTitle("ALREADY VOTED", forState: UIControlState.Disabled)
@@ -169,9 +164,6 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         }
         
         self.voteBtn.hidden = false
-        
-//        print("INDEX ROW >>> \(indexPath.row)")
-//        print("NAME >>> \(venueSelected.name)")
     }
     
     func vote(venue: Venue) {
@@ -194,7 +186,6 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             if let doesNotExist = snapshot.value as? NSNull {
                 voteVenueRef.setValue(1)
                 voteVenueRef.parent?.child("name").setValue(venue.name)
-//                voteVenueRef.child("name").setValue(venue.name)
             } else {
                 let valString = snapshot.value
                 var value = valString!.intValue
@@ -221,21 +212,11 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 self.votedToday = true
             }
         })
-
-        
-//        votedToday = DataService.ds.hasVoted(self.dateFormatter.stringFromDate(currentDate))
-        
-        if votedToday {
-            print(">>>> VOTED <<<<<<<")
-        }
         
         ref = FIRDatabase.database().reference()
         
         // Listen for new records in the Firebase database
         _refHandle = self.ref.child("venues").observeEventType(.Value, withBlock: { (snapshot) -> Void in
-            //            self.venues.append(snapshot)
-            
-            //            print("KEY >>> \(snapshot.value)!")
             
             self.venues = []
             
@@ -243,8 +224,6 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 
                 for snap in snapshots {
                     var venueAvailable = true
-                    
-//                    print("SNAP: \(snap)")
                     
                     if let venueDict = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key
@@ -261,11 +240,17 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
                         
                         let venue = Venue(id: key, dictionary: venueDict, voted: false, available: venueAvailable, winner: false)
                         
+                        print("ID >> \(venue.id)")
+                        print("NAME >> \(venue.name)")
+                        print("ADDRESS >> \(venue.address)")
+                        print("LAT >> \(venue.latitude)")
+                        print("LNG >> \(venue.longitude)")
+                        print("DT >> \(venue.pollDate)")
+                        print("---------------\n")
+                        
                         self.venues.append(venue)
                     }
                 }
-                
-//                self.venues[0].setAvailability(false)
                 
                 self.mapTableView.reloadData()
                 self.addVenuesOnMap(self.venues)
@@ -286,8 +271,6 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             
             self.voteBtn.hidden = true
             
-//            venues.count > 0 ||
-            
             if mapTableView.indexPathForSelectedRow != nil {
                 mapTableView.deselectRowAtIndexPath(mapTableView.indexPathForSelectedRow!, animated: true)
             }
@@ -307,29 +290,21 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         }
         
         mapView?.addAnnotations(venueAnnotations)
-        
-//        for annotation in (mapView?.annotations)! {
-//            print("ANNOTATION TITLE >> \(annotation.title)")
-//            mapView?.annotations.
-//        }
     }
     
-//    func forDevTests() {
-        //        strArrayTest = ["Nome 1", "Nome 2"]
-        
-//        venues.append(Venue.init(id: "4d3fafb5cb84b60c02947f22", name: "Tartine", latitude: -33.920053, longitude: 151.189177, address: "635 Gardeners Rd, Mascot NSW 2020"))
-//        
-//        venues.append(Venue.init(id: "4b5d8f9ff964a5208c6129e3", name: "Tavolino Pizzeria", latitude: -33.922332, longitude: 151.187632, address: "7/1-5 Bourke St, Mascot NSW 2020"))
-//        
-//        venues.append(Venue.init(id: "4bf58dd8d48988d1a1941735", name: "Spice Thai Cuisine Mascot", latitude: -33.923418, longitude: 151.186881, address: "3/8 Bourke St, Mascot NSW 2020"))
-//        
-//        venues.append(Venue.init(id: "4d3fafb5cb84b60c02947fab", name: "Ichiro's Sushi Bar", latitude: -33.922563, longitude: 151.186108, address: "14/19-33 Kent Rd, Mascot NSW 2020"))
-        
-        // Tavolino Pizzeria -33.922332, 151.187632 7/1-5 Bourke St, Mascot NSW 2020
-        // Spice Thai Cuisine Mascot -33.923418, 151.186881 3/8 Bourke St, Mascot NSW 2020
-        // Ichiro's Sushi Bar -33.922563, 151.186108 14/19-33 Kent Rd, Mascot NSW 2020
-        // Tartine -33.920053, 151.189177 635 Gardeners Rd, Mascot NSW 202
-//    }
+    @IBAction func handleLogTokenTouch(sender: UIButton) {
+        // [START get_iid_token]
+        let token = FIRInstanceID.instanceID().token()
+        print("InstanceID token: \(token!)")
+        // [END get_iid_token]
+    }
+    
+    @IBAction func handleSubscribeTouch(sender: UIButton) {
+        // [START subscribe_topic]
+        FIRMessaging.messaging().subscribeToTopic("/topics/news")
+        print("Subscribed to news topic")
+        // [END subscribe_topic]
+    }
 
 }
 

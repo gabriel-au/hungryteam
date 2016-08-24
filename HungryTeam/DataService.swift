@@ -38,20 +38,6 @@ class DataService {
     }
     
     func hasVoted(date: String) -> Bool {
-//        let ref = self.REF_CURRENT_USER.child("votes")
-//            
-//            ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-//            
-//            if let doesNotExist = snapshot.value as? NSNull {
-//                key = snapshot.value!.string
-//                
-//            }
-//            
-////            if (snapshot.value as? NSNull) != nil {
-////                key = snapshot.value!.string
-////            }
-//        })
-        
         let voteUserTestRef = DataService.ds.REF_CURRENT_USER.child("votes").child(date)
         
         voteUserTestRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
@@ -60,9 +46,6 @@ class DataService {
                 self.voted = false
             } else {
                 self.voted = true
-      
-//                print("VENUE VOTED >>> \(snapshot.value)")
-//                print("VENUE KEY >>> \(snapshot.key)")
             }
         })
         

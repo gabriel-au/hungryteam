@@ -10,6 +10,7 @@ target 'HungryTeam' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'Firebase/Messaging'
 
   target 'HungryTeamTests' do
     inherit! :search_paths

@@ -26,9 +26,4 @@ class Vote {
         self._venues = venues
     }
     
-//    init(date: NSDate, dictionary: Dictionary<String, AnyObject>) {
-//        self._date = date
-//    }
-    
-    
 }

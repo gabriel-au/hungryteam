@@ -27,19 +27,4 @@ class VenueAnnotation: NSObject, MKAnnotation {
         
         super.init()
     }
-    
-//    func pinColor() -> MKPinAnnotationColor  {
-//        
-//        
-//        switch discipline {
-//        case "Sculpture", "Plaque":
-//            return .Red
-//        case "Mural", "Monument":
-//            return .Purple
-//        default:
-//            
-//        }
-//        
-//        return .Green
-//    }
 }
