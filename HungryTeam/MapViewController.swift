@@ -175,23 +175,33 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             
             if let doesNotExist = snapshot.value as? NSNull {
                 voteUserRef.setValue(true)
+                self.votedToday = true
                 
             }
         })
         
-        let voteVenueRef = DataService.ds.REF_BASE.child("votes").child(today).child(self.venueSelected.id!).child("votes")
+        let voteVenueRef = DataService.ds.REF_BASE.child("votes").child(today).child(self.venueSelected.id!)
         
         voteVenueRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             
             if let doesNotExist = snapshot.value as? NSNull {
-                voteVenueRef.setValue(1)
-                voteVenueRef.parent?.child("name").setValue(venue.name)
+                voteVenueRef.child("votes").setValue(1)
+                voteVenueRef.child("name").setValue(venue.name)
             } else {
-                let valString = snapshot.value
-                var value = valString!.intValue
-                value = value + 1
+                var votes = snapshot.value!["votes"] as! Int
+                votes = votes + 1
                 
-                voteVenueRef.setValue(Int(value))
+                
+//                let child = snapshot.children.nextObject()
+//                let valString = child?.value["votes"]
+                
+                print("SNAP >>> \(snapshot)")
+                print("VOTES >>> \(votes)")
+                
+//                let valString = snapshot.value
+                
+//
+                voteVenueRef.child("votes").setValue(votes)
             }
         })
         
@@ -239,6 +249,14 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
                         }
                         
                         let venue = Venue(id: key, dictionary: venueDict, voted: false, available: venueAvailable, winner: false)
+                        
+                        print("ID >> \(venue.id)")
+                        print("NAME >> \(venue.name)")
+                        print("ADDRESS >> \(venue.address)")
+                        print("LAT >> \(venue.latitude)")
+                        print("LNG >> \(venue.longitude)")
+                        print("DT >> \(venue.pollDate)")
+                        print("---------------\n")
                         
                         self.venues.append(venue)
                     }
