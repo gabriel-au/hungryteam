@@ -118,6 +118,15 @@ class Venue {
         self._winner = winner
     }
     
+    func adjustVotes(addVotes: Bool) {
+        
+        if addVotes {
+            _votes = _votes + 1
+        } else {
+            _votes = _votes - 1
+        }
+    }
+    
 //    func setAvailability(available: Bool) {
 //        self._available = available
 //    }

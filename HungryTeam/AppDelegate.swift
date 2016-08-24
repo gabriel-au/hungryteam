@@ -28,8 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        FIRApp.configure()
         
         let device_id = UIDevice.currentDevice().identifierForVendor?.UUIDString
+        NSUserDefaults.standardUserDefaults().setValue(device_id, forKey: "uid")
         
-        print("PHONE ID >>> \(device_id!)")
+//        print("PHONE ID >>> \(device_id!)")
         
 //        locationManager = CLLocationManager()
 //        locationManager?.requestWhenInUseAuthorization()

@@ -31,14 +31,20 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var lat: CLLocationDegrees!
     var lng: CLLocationDegrees!
     
+    var venueSelected: Venue!
     var venues = [Venue]()
     var venueAnnotations = [VenueAnnotation]()
+    
+    var votedToday = false
     
     var ref: FIRDatabaseReference!
     private var _refHandle: FIRDatabaseHandle!
     
-//    var venues: [FIRDataSnapshot]! = []
-//    var venues: [Venue] = []
+    private var _venue: Venue?
+    
+    var venue: Venue? {
+        return _venue
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +52,6 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         locManager = CLLocationManager()
         locManager.desiredAccuracy = kCLLocationAccuracyBest
         locManager.requestWhenInUseAuthorization()
-//        locManager.requestAlwaysAuthorization()
         locManager.startUpdatingLocation()
         
         mapView.delegate = self
@@ -56,6 +61,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         mapTableView.dataSource = self
         
         self.dateFormatter.locale = NSLocale.currentLocale()
+        self.dateFormatter.dateFormat = "yyyy-MM-dd"
         
         self.currentDateComponents = calendar.components([.YearForWeekOfYear, .WeekOfYear], fromDate: currentDate)
         self.startOfWeek = calendar.dateFromComponents(currentDateComponents!)
@@ -69,15 +75,8 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         lat = currentLocation.coordinate.latitude
         lng = currentLocation.coordinate.longitude
-        
-//        print("Lat: ", lat)
-//        print("Lng: ", lng)
-        
-//        let region = MKCoordinateRegionMakeWithDistance(userLocation.location!.coordinate, 2000, 2000)
 
         let center = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-        //let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-        
         let region = MKCoordinateRegionMakeWithDistance(center, distanceSpan, distanceSpan)
         
         mapView.setRegion(region, animated: true)
@@ -90,34 +89,29 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     override func viewWillAppear(animated: Bool) {
-//        tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow!, animated: true)
         centerMap()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func voteBtnPressed(sender: UIButton) {
-        let voteAlert = UIAlertController(title: "VOTE", message: "You can vote once a day. \nVoting closes at 1pm. \nDo you confirm your vote?", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        voteAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-            print("Handle Ok logic here")
+        if venueSelected != nil {
+            let voteAlert = UIAlertController(title: "VOTE", message: "You can vote once a day. \nVoting closes at 1pm. \nDo you confirm your vote?", preferredStyle: UIAlertControllerStyle.Alert)
             
-            self.tabBarController!.selectedIndex = 1
+            voteAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+//                print("Handle Ok logic here")
+                
+                self.vote(self.venueSelected)
+                self.tabBarController!.selectedIndex = 1
+            }))
             
-//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//            
-//            let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("pollView") as! PollViewController
-//            self.presentViewController(nextViewController, animated:true, completion:nil)
-        }))
-        
-        voteAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
-//            print("Handle Cancel Logic here")
-        }))
-        
-        presentViewController(voteAlert, animated: true, completion: nil)
+            voteAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
+            }))
+            
+            presentViewController(voteAlert, animated: true, completion: nil)
+        }
 
     }
     
@@ -126,7 +120,6 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //venues.count ?? 0
         return venues.count ?? 0
     }
     
@@ -154,34 +147,91 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let venue = venues[indexPath.row]
-        let region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: Double(venue.latitude!), longitude: Double(venue.longitude!)), (distanceSpan*2), (distanceSpan*2))
+        venueSelected = venues[indexPath.row]
+        let region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: Double(venueSelected.latitude!), longitude: Double(venueSelected.longitude!)), (distanceSpan*2), (distanceSpan*2))
         
         mapView?.setRegion(region, animated: true)
         mapView?.selectAnnotation(venueAnnotations[indexPath.row], animated: true)
 //        mapView?.selectAnnotation(mapView.annotations[indexPath.row], animated: true)
         
-        // TO-DO implent date check
-        if venue.available! {
-            self.voteBtn.enabled = true
-        } else {
-            self.voteBtn.setTitle("VOTED THIS WEEK", forState: UIControlState.Disabled)
+        if votedToday {
+            self.voteBtn.setTitle("ALREADY VOTED", forState: UIControlState.Disabled)
             self.voteBtn.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Disabled)
             self.voteBtn.enabled = false
+        } else {
+            if venueSelected.available! {
+                self.voteBtn.enabled = true
+            } else {
+                self.voteBtn.setTitle("VOTED THIS WEEK", forState: UIControlState.Disabled)
+                self.voteBtn.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Disabled)
+                self.voteBtn.enabled = false
+            }
         }
         
         self.voteBtn.hidden = false
         
-        print("INDEX ROW >>> \(indexPath.row)")
-        print("NAME >>> \(venue.name)")
+//        print("INDEX ROW >>> \(indexPath.row)")
+//        print("NAME >>> \(venueSelected.name)")
+    }
+    
+    func vote(venue: Venue) {
+        let today = self.dateFormatter.stringFromDate(currentDate)
+        
+        let voteUserRef = DataService.ds.REF_CURRENT_USER.child("votes").child(today).child(self.venueSelected.id!)
+        
+        voteUserRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            if let doesNotExist = snapshot.value as? NSNull {
+                voteUserRef.setValue(true)
+                
+            }
+        })
+        
+        let voteVenueRef = DataService.ds.REF_BASE.child("votes").child(today).child(self.venueSelected.id!).child("votes")
+        
+        voteVenueRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            if let doesNotExist = snapshot.value as? NSNull {
+                voteVenueRef.setValue(1)
+                voteVenueRef.parent?.child("name").setValue(venue.name)
+//                voteVenueRef.child("name").setValue(venue.name)
+            } else {
+                let valString = snapshot.value
+                var value = valString!.intValue
+                value = value + 1
+                
+                voteVenueRef.setValue(Int(value))
+            }
+        })
+        
     }
     
     func configureDatabase() {
-        self.dateFormatter.dateFormat = "yyyy-MM-dd"
+        DataService.ds.createFirebaseUser()
+        
+        let date = self.dateFormatter.stringFromDate(currentDate)
+        
+        let voteUserTestRef = DataService.ds.REF_CURRENT_USER.child("votes").child(date)
+        
+        voteUserTestRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            if let doesNotExist = snapshot.value as? NSNull {
+                self.votedToday = false
+            } else {
+                self.votedToday = true
+            }
+        })
+
+        
+//        votedToday = DataService.ds.hasVoted(self.dateFormatter.stringFromDate(currentDate))
+        
+        if votedToday {
+            print(">>>> VOTED <<<<<<<")
+        }
         
         ref = FIRDatabase.database().reference()
         
-        // Listen for new messages in the Firebase database
+        // Listen for new records in the Firebase database
         _refHandle = self.ref.child("venues").observeEventType(.Value, withBlock: { (snapshot) -> Void in
             //            self.venues.append(snapshot)
             
@@ -194,7 +244,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 for snap in snapshots {
                     var venueAvailable = true
                     
-                    print("SNAP: \(snap)")
+//                    print("SNAP: \(snap)")
                     
                     if let venueDict = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key

@@ -361,6 +361,11 @@
 					C098CEA31D694F4800938D91 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = NWQ2F9273P;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					C098CEB91D694F4800938D91 = {
 						CreatedOnToolsVersion = 7.3.1;

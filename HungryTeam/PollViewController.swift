@@ -160,12 +160,22 @@ class PollViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func updateRanking() {
-        if todayVenues.count >= 1 && todayVenues.count <= 3 {
+        if (todayVenues.count == 1) {
+            self.firstVenueNameLbl.text = todayVenues[0].name
+            self.firstVenueAddressLbl.text = "Sydney, Australia" //todayVenues[0].address
+            self.firstVenueVotesLbl.text = todayVenues[0].votes?.description
+        } else if (todayVenues.count > 1 && todayVenues.count <= 2) {
             self.firstVenueNameLbl.text = todayVenues[0].name
             self.firstVenueAddressLbl.text = "Sydney, Australia" //todayVenues[0].address
             self.firstVenueVotesLbl.text = todayVenues[0].votes?.description
             
-//            print("VOTES >>> \(todayVenues[0].votes)")
+            self.secondVenueNameLbl.text = todayVenues[1].name
+            self.secondVenueAddressLbl.text = "Sydney, Australia" //todayVenues[1].name
+            self.secondVenueVotesLbl.text = todayVenues[1].votes?.description
+        } else if todayVenues.count > 1 && todayVenues.count <= 3 {
+            self.firstVenueNameLbl.text = todayVenues[0].name
+            self.firstVenueAddressLbl.text = "Sydney, Australia" //todayVenues[0].address
+            self.firstVenueVotesLbl.text = todayVenues[0].votes?.description
             
             self.secondVenueNameLbl.text = todayVenues[1].name
             self.secondVenueAddressLbl.text = "Sydney, Australia" //todayVenues[1].name
@@ -174,18 +184,6 @@ class PollViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.thirdVenueNameLbl.text = todayVenues[2].name
             self.thirdVenueAddressLbl.text = "Sydney, Australia" //todayVenues[2].name
             self.thirdVenueVotesLbl.text = todayVenues[2].votes?.description
-        } else if (todayVenues.count >= 1 && todayVenues.count <= 2) {
-            self.firstVenueNameLbl.text = todayVenues[0].name
-            self.firstVenueAddressLbl.text = "Sydney, Australia" //todayVenues[0].address
-            self.firstVenueVotesLbl.text = todayVenues[0].votes?.description
-            
-            self.secondVenueNameLbl.text = todayVenues[1].name
-            self.secondVenueAddressLbl.text = "Sydney, Australia" //todayVenues[1].name
-            self.secondVenueVotesLbl.text = todayVenues[1].votes?.description
-        }  else if (todayVenues.count == 1) {
-            self.firstVenueNameLbl.text = todayVenues[0].name
-            self.firstVenueAddressLbl.text = "Sydney, Australia" //todayVenues[0].address
-            self.firstVenueVotesLbl.text = todayVenues[0].votes?.description
         }
     }
     
