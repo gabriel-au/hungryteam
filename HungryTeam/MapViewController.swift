@@ -240,14 +240,6 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
                         
                         let venue = Venue(id: key, dictionary: venueDict, voted: false, available: venueAvailable, winner: false)
                         
-                        print("ID >> \(venue.id)")
-                        print("NAME >> \(venue.name)")
-                        print("ADDRESS >> \(venue.address)")
-                        print("LAT >> \(venue.latitude)")
-                        print("LNG >> \(venue.longitude)")
-                        print("DT >> \(venue.pollDate)")
-                        print("---------------\n")
-                        
                         self.venues.append(venue)
                     }
                 }
