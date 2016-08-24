@@ -15,11 +15,21 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapTableView: UITableView!
+    @IBOutlet weak var voteBtn: UIButton!
+    @IBOutlet weak var locationBtn: UIButton!
     
     let distanceSpan: Double = 1000
     
+    let currentDate = NSDate()
+    let dateFormatter = NSDateFormatter()
+    let calendar = NSCalendar.currentCalendar()
+    var currentDateComponents: NSDateComponents?
+    var startOfWeek: NSDate?
+    
     var locManager:CLLocationManager!
     var currentLocation:CLLocation!
+    var lat: CLLocationDegrees!
+    var lng: CLLocationDegrees!
     
     var venues = [Venue]()
     var venueAnnotations = [VenueAnnotation]()
@@ -39,7 +49,16 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
 //        locManager.requestAlwaysAuthorization()
         locManager.startUpdatingLocation()
         
+        mapView.delegate = self
         mapView.showsUserLocation = true
+        
+        mapTableView.delegate = self
+        mapTableView.dataSource = self
+        
+        self.dateFormatter.locale = NSLocale.currentLocale()
+        
+        self.currentDateComponents = calendar.components([.YearForWeekOfYear, .WeekOfYear], fromDate: currentDate)
+        self.startOfWeek = calendar.dateFromComponents(currentDateComponents!)
         
         if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways){
@@ -48,8 +67,8 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             
         }
         
-        let lat = currentLocation.coordinate.latitude
-        let lng = currentLocation.coordinate.longitude
+        lat = currentLocation.coordinate.latitude
+        lng = currentLocation.coordinate.longitude
         
 //        print("Lat: ", lat)
 //        print("Lng: ", lng)
@@ -71,15 +90,39 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     override func viewWillAppear(animated: Bool) {
-        if let mapTableView = self.mapTableView {
-            mapTableView.delegate = self
-            mapTableView.dataSource = self
-        }
+//        tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow!, animated: true)
+        centerMap()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func voteBtnPressed(sender: UIButton) {
+        let voteAlert = UIAlertController(title: "VOTE", message: "You can vote once a day. \nVoting closes at 1pm. \nDo you confirm your vote?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        voteAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            print("Handle Ok logic here")
+            
+            self.tabBarController!.selectedIndex = 1
+            
+//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//            
+//            let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("pollView") as! PollViewController
+//            self.presentViewController(nextViewController, animated:true, completion:nil)
+        }))
+        
+        voteAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
+//            print("Handle Cancel Logic here")
+        }))
+        
+        presentViewController(voteAlert, animated: true, completion: nil)
+
+    }
+    
+    @IBAction func locationBtnPressed(sender: UIButton) {
+        centerMap()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -118,11 +161,24 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         mapView?.selectAnnotation(venueAnnotations[indexPath.row], animated: true)
 //        mapView?.selectAnnotation(mapView.annotations[indexPath.row], animated: true)
         
+        // TO-DO implent date check
+        if venue.available! {
+            self.voteBtn.enabled = true
+        } else {
+            self.voteBtn.setTitle("VOTED THIS WEEK", forState: UIControlState.Disabled)
+            self.voteBtn.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Disabled)
+            self.voteBtn.enabled = false
+        }
+        
+        self.voteBtn.hidden = false
+        
         print("INDEX ROW >>> \(indexPath.row)")
         print("NAME >>> \(venue.name)")
     }
     
     func configureDatabase() {
+        self.dateFormatter.dateFormat = "yyyy-MM-dd"
+        
         ref = FIRDatabase.database().reference()
         
         // Listen for new messages in the Firebase database
@@ -136,14 +192,30 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
                 for snap in snapshots {
-                    //                    print("SNAP: \(snap)")
+                    var venueAvailable = true
+                    
+                    print("SNAP: \(snap)")
                     
                     if let venueDict = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key
-                        let venue = Venue(id: key, dictionary: venueDict)
+                        
+                        let voteDate = self.dateFormatter.dateFromString((snap.value!["poll_date"] as? String)!)
+                        
+                        if voteDate != nil {
+                            let dateOrder = NSCalendar.currentCalendar().compareDate(self.startOfWeek!, toDate: voteDate!, toUnitGranularity: .Day)
+                            
+                            if dateOrder == NSComparisonResult.OrderedAscending || dateOrder == NSComparisonResult.OrderedSame {
+                                venueAvailable = false
+                            }
+                        }
+                        
+                        let venue = Venue(id: key, dictionary: venueDict, voted: false, available: venueAvailable, winner: false)
+                        
                         self.venues.append(venue)
                     }
                 }
+                
+//                self.venues[0].setAvailability(false)
                 
                 self.mapTableView.reloadData()
                 self.addVenuesOnMap(self.venues)
@@ -151,11 +223,35 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         })
     }
     
+    func centerMap() {
+        if locManager != nil {
+            let center = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+            let region = MKCoordinateRegionMakeWithDistance(center, distanceSpan, distanceSpan)
+            
+            let selectedAnnotations = mapView.selectedAnnotations
+            
+            if selectedAnnotations.count > 0 {
+                mapView.deselectAnnotation(selectedAnnotations[0], animated: true)
+            }
+            
+            self.voteBtn.hidden = true
+            
+//            venues.count > 0 ||
+            
+            if mapTableView.indexPathForSelectedRow != nil {
+                mapTableView.deselectRowAtIndexPath(mapTableView.indexPathForSelectedRow!, animated: true)
+            }
+            
+            mapView.setRegion(region, animated: true)
+        }
+        
+    }
+    
     func addVenuesOnMap(venues: [Venue]) {
         self.venueAnnotations = []
         
         for venue in venues {
-            let annotation = VenueAnnotation(title: venue.name, subtitle: venue.address, coordinate: CLLocationCoordinate2D(latitude: Double(venue.latitude!), longitude: Double(venue.longitude!)))
+            let annotation = VenueAnnotation(title: venue.name, subtitle: venue.address, coordinate: CLLocationCoordinate2D(latitude: Double(venue.latitude!), longitude: Double(venue.longitude!)), voted: venue.voted!, available: venue.available!, winner: venue.winner!)
             
             self.venueAnnotations.append(annotation)
         }

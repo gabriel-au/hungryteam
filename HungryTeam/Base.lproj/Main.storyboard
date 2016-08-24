@@ -40,11 +40,48 @@
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jiu-c0-hOs">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="230"/>
                                     </mapView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ur7-Jr-WDO" userLabel="voteBtn">
+                                        <rect key="frame" x="200" y="182" width="200" height="40"/>
+                                        <color key="backgroundColor" red="0.67843137249999996" green="0.019607843140000001" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="nX2-tB-9TF"/>
+                                            <constraint firstAttribute="width" constant="200" id="taO-qb-QG7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                        <state key="normal" title="VOTE">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="voteBtnPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="JY4-LG-JWf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNv-eF-fdT" userLabel="locationBtn">
+                                        <rect key="frame" x="552" y="182" width="40" height="40"/>
+                                        <color key="backgroundColor" red="0.67843137249999996" green="0.019607843140000001" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="RD1-d5-gUH"/>
+                                            <constraint firstAttribute="width" constant="40" id="ezl-71-TB4"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <size key="titleShadowOffset" width="2.2250738585072014e-308" height="2.2250738585072014e-308"/>
+                                        <state key="normal" image="locationArrow">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="locationBtnPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="N4j-5G-fj8"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Ur7-Jr-WDO" secondAttribute="bottom" constant="8" id="0b5-pN-Cea"/>
                                     <constraint firstItem="Jiu-c0-hOs" firstAttribute="width" secondItem="SnB-dS-tfD" secondAttribute="width" id="0g5-mH-QQ0"/>
+                                    <constraint firstAttribute="trailing" secondItem="nNv-eF-fdT" secondAttribute="trailing" constant="8" id="8rf-O4-lAW"/>
                                     <constraint firstItem="Jiu-c0-hOs" firstAttribute="height" secondItem="SnB-dS-tfD" secondAttribute="height" id="JCf-hk-Hll"/>
                                     <constraint firstAttribute="height" constant="230" id="Jq1-Vx-NOg"/>
+                                    <constraint firstAttribute="bottom" secondItem="nNv-eF-fdT" secondAttribute="bottom" constant="8" id="gdl-Si-Ezh"/>
+                                    <constraint firstItem="Ur7-Jr-WDO" firstAttribute="centerX" secondItem="SnB-dS-tfD" secondAttribute="centerX" id="nQY-VW-GNd"/>
                                     <constraint firstItem="Jiu-c0-hOs" firstAttribute="centerX" secondItem="SnB-dS-tfD" secondAttribute="centerX" id="tf8-rD-z2D"/>
                                     <constraint firstItem="Jiu-c0-hOs" firstAttribute="centerY" secondItem="SnB-dS-tfD" secondAttribute="centerY" id="xjl-vu-JKD"/>
                                 </constraints>
@@ -108,8 +145,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="second" id="cPa-gy-q4n"/>
                     <connections>
+                        <outlet property="locationBtn" destination="nNv-eF-fdT" id="vWv-Ur-cra"/>
                         <outlet property="mapTableView" destination="h3r-k2-B4V" id="XME-hn-XQL"/>
                         <outlet property="mapView" destination="Jiu-c0-hOs" id="xhs-Ul-nX1"/>
+                        <outlet property="voteBtn" destination="Ur7-Jr-WDO" id="MIS-3K-RAI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -140,7 +179,7 @@
         <!--PollView-->
         <scene sceneID="5AR-HU-v7v">
             <objects>
-                <viewController id="PVg-qT-7A9" userLabel="PollView" customClass="PollViewController" customModule="Hungry_Team" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pollView" id="PVg-qT-7A9" userLabel="PollView" customClass="PollViewController" customModule="Hungry_Team" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lK5-eL-9o5"/>
                         <viewControllerLayoutGuide type="bottom" id="SSk-WC-PZQ"/>
@@ -419,6 +458,7 @@
         <image name="2ndMedal" width="900" height="900"/>
         <image name="3rdMedal" width="900" height="900"/>
         <image name="first" width="30" height="30"/>
+        <image name="locationArrow" width="512" height="512"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>

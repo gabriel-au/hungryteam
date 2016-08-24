@@ -13,12 +13,33 @@ class VenueAnnotation: NSObject, MKAnnotation {
     var title:String?
     var subtitle:String?
     var coordinate: CLLocationCoordinate2D
+    var voted: Bool = false
+    var available: Bool = true
+    var winner: Bool = false
     
-    init(title: String?, subtitle:String?, coordinate: CLLocationCoordinate2D) {
+    init(title: String?, subtitle:String?, coordinate: CLLocationCoordinate2D, voted: Bool, available: Bool, winner: Bool) {
         self.title = title
         self.subtitle = subtitle
         self.coordinate = coordinate
+        self.voted = voted
+        self.available = available
+        self.winner = winner
         
         super.init()
     }
+    
+//    func pinColor() -> MKPinAnnotationColor  {
+//        
+//        
+//        switch discipline {
+//        case "Sculpture", "Plaque":
+//            return .Red
+//        case "Mural", "Monument":
+//            return .Purple
+//        default:
+//            
+//        }
+//        
+//        return .Green
+//    }
 }
