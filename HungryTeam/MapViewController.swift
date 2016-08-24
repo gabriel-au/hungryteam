@@ -191,16 +191,6 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 var votes = snapshot.value!["votes"] as! Int
                 votes = votes + 1
                 
-                
-//                let child = snapshot.children.nextObject()
-//                let valString = child?.value["votes"]
-                
-                print("SNAP >>> \(snapshot)")
-                print("VOTES >>> \(votes)")
-                
-//                let valString = snapshot.value
-                
-//
                 voteVenueRef.child("votes").setValue(votes)
             }
         })
